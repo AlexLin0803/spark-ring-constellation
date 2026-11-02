@@ -56,6 +56,7 @@
   }
 
   function getRenderPixelRatio() {
+    if (diagMode === "dpr1") return 1;
     const cap = isMobileViewport() ? 1.5 : 2;
     return Math.min(window.devicePixelRatio || 1, cap);
   }
@@ -78,15 +79,24 @@
     };
   }
 
+  const diagMode = new URLSearchParams(window.location.search).get("diag") || "";
+
   const initialCanvas = getCanvasMetrics();
   const mobileRendering = isMobileViewport();
-  const renderer = new THREE.WebGLRenderer({
+  const rendererOptions = {
     canvas,
     antialias: !mobileRendering,
     alpha: false,
     powerPreference: mobileRendering ? "default" : "high-performance",
     stencil: false
-  });
+  };
+  if (diagMode === "webgl1") {
+    const gl = canvas.getContext("webgl", {
+      alpha: false, antialias: false, stencil: false, powerPreference: "default"
+    });
+    if (gl) rendererOptions.context = gl;
+  }
+  const renderer = new THREE.WebGLRenderer(rendererOptions);
   renderer.setClearColor(0x080808, 1);
   renderer.setPixelRatio(getRenderPixelRatio());
   renderer.setSize(initialCanvas.width, initialCanvas.height, false);
@@ -898,6 +908,36 @@
   selectedMarker = addSelectionMarker();
   selectedGlow = addSelectionGlow();
   selectedCore = addSelectionCore();
+
+  function applyDiagnosticMode() {
+    if (!diagMode) return;
+    if (diagMode === "canvas-hidden") {
+      canvas.style.visibility = "hidden";
+    } else if (diagMode === "none") {
+      scene.visible = false;
+    } else {
+      scene.traverse(object => {
+        if (diagMode === "points") {
+          if (object.isSprite || object.isLine || object.isLineSegments) object.visible = false;
+        } else if (diagMode === "sprites") {
+          if (!object.isSprite) object.visible = false;
+        } else if (diagMode === "lines") {
+          if (!(object.isLine || object.isLineSegments)) object.visible = false;
+        } else if (diagMode === "no-points") {
+          if (object.isPoints) object.visible = false;
+        } else if (diagMode === "no-sprites") {
+          if (object.isSprite) object.visible = false;
+        } else if (diagMode === "no-lines") {
+          if (object.isLine || object.isLineSegments) object.visible = false;
+        }
+      });
+    }
+    const badge = document.createElement("div");
+    badge.textContent = `DIAG ${diagMode}`;
+    badge.style.cssText = "position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:99999;padding:4px 8px;border:1px solid #FF7C44;background:rgba(8,8,8,.9);color:#FF7C44;font:10px monospace;letter-spacing:.08em;pointer-events:none;";
+    document.body.appendChild(badge);
+  }
+  applyDiagnosticMode();
 
   function updateSelectionFocus() {
     const active = selectedIndex >= 0;
