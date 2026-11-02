@@ -1,0 +1,396 @@
+{
+  "status": "PASS WITH NOTES",
+  "notes": [
+    "Campaign title claims 853 backers; the supplied workbook contains 816 unique Backer Numbers (-37).",
+    "No approved_display_name column was supplied. Public labels were derived with the MASK-1 privacy policy; original usernames were not published."
+  ],
+  "record_count": 816,
+  "unique_backer_numbers": 816,
+  "unique_original_names_exact": 791,
+  "unique_original_names_casefold": 787,
+  "blank_backer_numbers": [],
+  "blank_names": [],
+  "duplicate_backer_numbers": {},
+  "conflicting_number_to_name_mappings": {},
+  "duplicate_name_group_count": 25,
+  "duplicate_name_extra_rows": 29,
+  "duplicate_name_groups": [
+    {
+      "masked_label": "Alan***",
+      "count": 2,
+      "backer_numbers": [
+        "352",
+        "890"
+      ]
+    },
+    {
+      "masked_label": "Alex***",
+      "count": 2,
+      "backer_numbers": [
+        "146",
+        "389"
+      ]
+    },
+    {
+      "masked_label": "Alina***",
+      "count": 2,
+      "backer_numbers": [
+        "168",
+        "907"
+      ]
+    },
+    {
+      "masked_label": "Allen***",
+      "count": 2,
+      "backer_numbers": [
+        "224",
+        "625"
+      ]
+    },
+    {
+      "masked_label": "BEN***",
+      "count": 2,
+      "backer_numbers": [
+        "235",
+        "410"
+      ]
+    },
+    {
+      "masked_label": "Brian***",
+      "count": 2,
+      "backer_numbers": [
+        "710",
+        "811"
+      ]
+    },
+    {
+      "masked_label": "carlo***",
+      "count": 2,
+      "backer_numbers": [
+        "505",
+        "672"
+      ]
+    },
+    {
+      "masked_label": "clair***",
+      "count": 2,
+      "backer_numbers": [
+        "62",
+        "233"
+      ]
+    },
+    {
+      "masked_label": "Crist***",
+      "count": 2,
+      "backer_numbers": [
+        "52",
+        "183"
+      ]
+    },
+    {
+      "masked_label": "Danie***",
+      "count": 4,
+      "backer_numbers": [
+        "238",
+        "292",
+        "371",
+        "944"
+      ]
+    },
+    {
+      "masked_label": "Dean***",
+      "count": 2,
+      "backer_numbers": [
+        "145",
+        "676"
+      ]
+    },
+    {
+      "masked_label": "Georg***",
+      "count": 2,
+      "backer_numbers": [
+        "45",
+        "106"
+      ]
+    },
+    {
+      "masked_label": "James***",
+      "count": 3,
+      "backer_numbers": [
+        "327",
+        "390",
+        "751"
+      ]
+    },
+    {
+      "masked_label": "Jess***",
+      "count": 2,
+      "backer_numbers": [
+        "50",
+        "476"
+      ]
+    },
+    {
+      "masked_label": "Joe***",
+      "count": 2,
+      "backer_numbers": [
+        "575",
+        "603"
+      ]
+    },
+    {
+      "masked_label": "John***",
+      "count": 2,
+      "backer_numbers": [
+        "357",
+        "713"
+      ]
+    },
+    {
+      "masked_label": "Kisha***",
+      "count": 2,
+      "backer_numbers": [
+        "552",
+        "652"
+      ]
+    },
+    {
+      "masked_label": "Larry***",
+      "count": 2,
+      "backer_numbers": [
+        "405",
+        "926"
+      ]
+    },
+    {
+      "masked_label": "Matt***",
+      "count": 2,
+      "backer_numbers": [
+        "316",
+        "618"
+      ]
+    },
+    {
+      "masked_label": "Megan***",
+      "count": 3,
+      "backer_numbers": [
+        "177",
+        "808",
+        "833"
+      ]
+    },
+    {
+      "masked_label": "Pavel***",
+      "count": 2,
+      "backer_numbers": [
+        "170",
+        "917"
+      ]
+    },
+    {
+      "masked_label": "Russe***",
+      "count": 2,
+      "backer_numbers": [
+        "897",
+        "914"
+      ]
+    },
+    {
+      "masked_label": "Sam***",
+      "count": 2,
+      "backer_numbers": [
+        "71",
+        "668"
+      ]
+    },
+    {
+      "masked_label": "tom***",
+      "count": 2,
+      "backer_numbers": [
+        "311",
+        "739"
+      ]
+    },
+    {
+      "masked_label": "Troy***",
+      "count": 2,
+      "backer_numbers": [
+        "37",
+        "585"
+      ]
+    }
+  ],
+  "numeric_range": [
+    2,
+    950
+  ],
+  "numeric_gaps": [
+    3,
+    4,
+    10,
+    11,
+    12,
+    14,
+    16,
+    31,
+    40,
+    43,
+    46,
+    48,
+    74,
+    78,
+    84,
+    95,
+    100,
+    102,
+    125,
+    144,
+    161,
+    162,
+    171,
+    172,
+    173,
+    174,
+    180,
+    181,
+    182,
+    191,
+    198,
+    218,
+    222,
+    239,
+    241,
+    263,
+    267,
+    269,
+    276,
+    282,
+    286,
+    291,
+    294,
+    324,
+    332,
+    334,
+    336,
+    341,
+    359,
+    362,
+    367,
+    385,
+    394,
+    403,
+    406,
+    408,
+    413,
+    419,
+    437,
+    449,
+    466,
+    468,
+    480,
+    482,
+    484,
+    486,
+    489,
+    500,
+    503,
+    504,
+    509,
+    510,
+    517,
+    522,
+    526,
+    538,
+    546,
+    547,
+    566,
+    572,
+    579,
+    588,
+    593,
+    601,
+    623,
+    629,
+    633,
+    634,
+    645,
+    646,
+    650,
+    655,
+    657,
+    662,
+    663,
+    670,
+    677,
+    679,
+    683,
+    686,
+    687,
+    689,
+    695,
+    704,
+    705,
+    714,
+    717,
+    718,
+    720,
+    723,
+    725,
+    730,
+    732,
+    736,
+    760,
+    761,
+    764,
+    766,
+    769,
+    770,
+    772,
+    779,
+    782,
+    787,
+    794,
+    796,
+    799,
+    800,
+    816,
+    828,
+    839,
+    843,
+    901
+  ],
+  "numeric_gap_count": 133,
+  "sample": {
+    "rule": "Lowest 50 numeric Backer Numbers, independently of row order",
+    "count": 50,
+    "backer_number_range": [
+      "2",
+      "63"
+    ],
+    "unique_backer_numbers": 50,
+    "unique_display_labels_casefold": 49,
+    "display_label_collisions": [
+      {
+        "label": "andre***",
+        "count": 2
+      }
+    ],
+    "mapping_errors": []
+  },
+  "campaign_claimed_count": 853,
+  "count_delta_vs_campaign_claim": -37,
+  "meta": {
+    "source_file": "backer名单.xlsx",
+    "source_sha256": "02453aac60ec0c72fd2b5687537e909ea56bd723b77219e632e9262537a314b3",
+    "source_sheet": "1793327783",
+    "source_rows_including_header": 817,
+    "empty_rows_ignored": 0,
+    "header_row_number": 1,
+    "visible_headers": [
+      "Backer Number",
+      "Backer Name"
+    ],
+    "approved_display_column_present": false
+  },
+  "generated_at": "2026-10-30T03:34:16+00:00"
+}

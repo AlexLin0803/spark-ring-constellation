@@ -1,0 +1,376 @@
+{
+  "campaign": {
+    "name": "THE FIRST 853",
+    "headline": "853 BELIEVERS. ONE SPARK.",
+    "supporting": "YOU BELIEVED FIRST.",
+    "claimed_backers": 853
+  },
+  "meta": {
+    "mode": "prototype",
+    "prototype_count": 50,
+    "selected_count": 50,
+    "authorized_record_count": 816,
+    "unique_backer_numbers": 816,
+    "campaign_claimed_count": 853,
+    "count_delta_vs_campaign_claim": -37,
+    "sample_rule": "Lowest 50 numeric Backer Numbers, independently of row order",
+    "display_mode": "privacy_mask",
+    "display_policy": "MASK-1: first 5 graphemes of the first token (1 for CJK) + ***",
+    "source_file": "backer名单.xlsx",
+    "source_sha256": "02453aac60ec0c72fd2b5687537e909ea56bd723b77219e632e9262537a314b3",
+    "pipeline_version": "1.0.0",
+    "privacy": "No original usernames are written to this public dataset."
+  },
+  "supporters": [
+    {
+      "backer_number": "2",
+      "approved_display_name": "Amir***",
+      "star_id": "SR-2",
+      "display_source": "privacy_mask",
+      "sequence": 0
+    },
+    {
+      "backer_number": "5",
+      "approved_display_name": "Dawn***",
+      "star_id": "SR-5",
+      "display_source": "privacy_mask",
+      "sequence": 1
+    },
+    {
+      "backer_number": "6",
+      "approved_display_name": "Andre***",
+      "star_id": "SR-6",
+      "display_source": "privacy_mask",
+      "sequence": 2
+    },
+    {
+      "backer_number": "7",
+      "approved_display_name": "Evolv***",
+      "star_id": "SR-7",
+      "display_source": "privacy_mask",
+      "sequence": 3
+    },
+    {
+      "backer_number": "8",
+      "approved_display_name": "Eric***",
+      "star_id": "SR-8",
+      "display_source": "privacy_mask",
+      "sequence": 4
+    },
+    {
+      "backer_number": "9",
+      "approved_display_name": "Harry***",
+      "star_id": "SR-9",
+      "display_source": "privacy_mask",
+      "sequence": 5
+    },
+    {
+      "backer_number": "13",
+      "approved_display_name": "Natha***",
+      "star_id": "SR-13",
+      "display_source": "privacy_mask",
+      "sequence": 6
+    },
+    {
+      "backer_number": "15",
+      "approved_display_name": "Mahmo***",
+      "star_id": "SR-15",
+      "display_source": "privacy_mask",
+      "sequence": 7
+    },
+    {
+      "backer_number": "17",
+      "approved_display_name": "slipb***",
+      "star_id": "SR-17",
+      "display_source": "privacy_mask",
+      "sequence": 8
+    },
+    {
+      "backer_number": "18",
+      "approved_display_name": "PPL***",
+      "star_id": "SR-18",
+      "display_source": "privacy_mask",
+      "sequence": 9
+    },
+    {
+      "backer_number": "19",
+      "approved_display_name": "Stewa***",
+      "star_id": "SR-19",
+      "display_source": "privacy_mask",
+      "sequence": 10
+    },
+    {
+      "backer_number": "20",
+      "approved_display_name": "Grazi***",
+      "star_id": "SR-20",
+      "display_source": "privacy_mask",
+      "sequence": 11
+    },
+    {
+      "backer_number": "21",
+      "approved_display_name": "Micha***",
+      "star_id": "SR-21",
+      "display_source": "privacy_mask",
+      "sequence": 12
+    },
+    {
+      "backer_number": "22",
+      "approved_display_name": "Nelso***",
+      "star_id": "SR-22",
+      "display_source": "privacy_mask",
+      "sequence": 13
+    },
+    {
+      "backer_number": "23",
+      "approved_display_name": "Heath***",
+      "star_id": "SR-23",
+      "display_source": "privacy_mask",
+      "sequence": 14
+    },
+    {
+      "backer_number": "24",
+      "approved_display_name": "Jack***",
+      "star_id": "SR-24",
+      "display_source": "privacy_mask",
+      "sequence": 15
+    },
+    {
+      "backer_number": "25",
+      "approved_display_name": "Arno***",
+      "star_id": "SR-25",
+      "display_source": "privacy_mask",
+      "sequence": 16
+    },
+    {
+      "backer_number": "26",
+      "approved_display_name": "Louis***",
+      "star_id": "SR-26",
+      "display_source": "privacy_mask",
+      "sequence": 17
+    },
+    {
+      "backer_number": "27",
+      "approved_display_name": "Bryan***",
+      "star_id": "SR-27",
+      "display_source": "privacy_mask",
+      "sequence": 18
+    },
+    {
+      "backer_number": "28",
+      "approved_display_name": "Silvi***",
+      "star_id": "SR-28",
+      "display_source": "privacy_mask",
+      "sequence": 19
+    },
+    {
+      "backer_number": "29",
+      "approved_display_name": "Brian***",
+      "star_id": "SR-29",
+      "display_source": "privacy_mask",
+      "sequence": 20
+    },
+    {
+      "backer_number": "30",
+      "approved_display_name": "Linda***",
+      "star_id": "SR-30",
+      "display_source": "privacy_mask",
+      "sequence": 21
+    },
+    {
+      "backer_number": "32",
+      "approved_display_name": "David***",
+      "star_id": "SR-32",
+      "display_source": "privacy_mask",
+      "sequence": 22
+    },
+    {
+      "backer_number": "33",
+      "approved_display_name": "Olive***",
+      "star_id": "SR-33",
+      "display_source": "privacy_mask",
+      "sequence": 23
+    },
+    {
+      "backer_number": "34",
+      "approved_display_name": "ors***",
+      "star_id": "SR-34",
+      "display_source": "privacy_mask",
+      "sequence": 24
+    },
+    {
+      "backer_number": "35",
+      "approved_display_name": "Dale***",
+      "star_id": "SR-35",
+      "display_source": "privacy_mask",
+      "sequence": 25
+    },
+    {
+      "backer_number": "36",
+      "approved_display_name": "artur***",
+      "star_id": "SR-36",
+      "display_source": "privacy_mask",
+      "sequence": 26
+    },
+    {
+      "backer_number": "37",
+      "approved_display_name": "Troy***",
+      "star_id": "SR-37",
+      "display_source": "privacy_mask",
+      "sequence": 27
+    },
+    {
+      "backer_number": "38",
+      "approved_display_name": "Tony***",
+      "star_id": "SR-38",
+      "display_source": "privacy_mask",
+      "sequence": 28
+    },
+    {
+      "backer_number": "39",
+      "approved_display_name": "Circu***",
+      "star_id": "SR-39",
+      "display_source": "privacy_mask",
+      "sequence": 29
+    },
+    {
+      "backer_number": "41",
+      "approved_display_name": "Jil***",
+      "star_id": "SR-41",
+      "display_source": "privacy_mask",
+      "sequence": 30
+    },
+    {
+      "backer_number": "42",
+      "approved_display_name": "Aadev***",
+      "star_id": "SR-42",
+      "display_source": "privacy_mask",
+      "sequence": 31
+    },
+    {
+      "backer_number": "44",
+      "approved_display_name": "Colli***",
+      "star_id": "SR-44",
+      "display_source": "privacy_mask",
+      "sequence": 32
+    },
+    {
+      "backer_number": "45",
+      "approved_display_name": "Georg***",
+      "star_id": "SR-45",
+      "display_source": "privacy_mask",
+      "sequence": 33
+    },
+    {
+      "backer_number": "47",
+      "approved_display_name": "VRG***",
+      "star_id": "SR-47",
+      "display_source": "privacy_mask",
+      "sequence": 34
+    },
+    {
+      "backer_number": "49",
+      "approved_display_name": "Gorda***",
+      "star_id": "SR-49",
+      "display_source": "privacy_mask",
+      "sequence": 35
+    },
+    {
+      "backer_number": "50",
+      "approved_display_name": "Jess***",
+      "star_id": "SR-50",
+      "display_source": "privacy_mask",
+      "sequence": 36
+    },
+    {
+      "backer_number": "51",
+      "approved_display_name": "Carin***",
+      "star_id": "SR-51",
+      "display_source": "privacy_mask",
+      "sequence": 37
+    },
+    {
+      "backer_number": "52",
+      "approved_display_name": "Crist***",
+      "star_id": "SR-52",
+      "display_source": "privacy_mask",
+      "sequence": 38
+    },
+    {
+      "backer_number": "53",
+      "approved_display_name": "Adam***",
+      "star_id": "SR-53",
+      "display_source": "privacy_mask",
+      "sequence": 39
+    },
+    {
+      "backer_number": "54",
+      "approved_display_name": "Don***",
+      "star_id": "SR-54",
+      "display_source": "privacy_mask",
+      "sequence": 40
+    },
+    {
+      "backer_number": "55",
+      "approved_display_name": "Paolo***",
+      "star_id": "SR-55",
+      "display_source": "privacy_mask",
+      "sequence": 41
+    },
+    {
+      "backer_number": "56",
+      "approved_display_name": "Andre***",
+      "star_id": "SR-56",
+      "display_source": "privacy_mask",
+      "sequence": 42
+    },
+    {
+      "backer_number": "57",
+      "approved_display_name": "Mina***",
+      "star_id": "SR-57",
+      "display_source": "privacy_mask",
+      "sequence": 43
+    },
+    {
+      "backer_number": "58",
+      "approved_display_name": "Progr***",
+      "star_id": "SR-58",
+      "display_source": "privacy_mask",
+      "sequence": 44
+    },
+    {
+      "backer_number": "59",
+      "approved_display_name": "Toby***",
+      "star_id": "SR-59",
+      "display_source": "privacy_mask",
+      "sequence": 45
+    },
+    {
+      "backer_number": "60",
+      "approved_display_name": "ALO***",
+      "star_id": "SR-60",
+      "display_source": "privacy_mask",
+      "sequence": 46
+    },
+    {
+      "backer_number": "61",
+      "approved_display_name": "Gunth***",
+      "star_id": "SR-61",
+      "display_source": "privacy_mask",
+      "sequence": 47
+    },
+    {
+      "backer_number": "62",
+      "approved_display_name": "clair***",
+      "star_id": "SR-62",
+      "display_source": "privacy_mask",
+      "sequence": 48
+    },
+    {
+      "backer_number": "63",
+      "approved_display_name": "Peter***",
+      "star_id": "SR-63",
+      "display_source": "privacy_mask",
+      "sequence": 49
+    }
+  ]
+}

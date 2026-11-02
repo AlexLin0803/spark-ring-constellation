@@ -1,0 +1,127 @@
+SPARK RING / THE FIRST 853
+COMMUNITY CONSTELLATION / FINAL DATA VALIDATION
+================================================================
+Source file: backer名单.xlsx
+Source SHA-256: 02453aac60ec0c72fd2b5687537e909ea56bd723b77219e632e9262537a314b3
+Master SVG SHA-256: d5f7fd09797664cba678d8ff1edbb2584234e696ad19b78579dbb4343b07708b
+
+SOURCE COUNTS
+----------------------------------------------------------------
+Total rows in original spreadsheet (including header): 817
+Header rows: 1
+Data rows: 816
+Valid supporter records: 816
+Unique Backer Numbers: 816
+Duplicate records (same Backer Number): 0
+Duplicate Backer Number values: 0
+Records with missing/invalid fields: 0
+Conflicting number-to-name mappings: 0
+Numeric Backer Number range: #2–#950
+Numbering gaps inside that range: 133
+
+NUMBERING NOTE
+----------------------------------------------------------------
+Gaps are not missing records. Cancelled or unissued Backer Numbers are expected.
+No gap was filled, invented, or reassigned. Every supplied number remains exact.
+Every valid data row is included, regardless of sequence continuity.
+
+PUBLIC DISPLAY POLICY
+----------------------------------------------------------------
+No approved_display_name column was present.
+Public labels use MASK-1: first 5 graphemes of the first token
+(1 grapheme for CJK-led names), then ***.
+Original usernames are not written to any public artifact.
+Distinct public display labels: 586
+Backer Number is the primary identifier and disambiguates mask collisions.
+
+FINAL SUPPORTER STARS
+----------------------------------------------------------------
+Final supporter stars generated: 816
+Stars in master constellation.svg: 816
+Star groups in each social SVG: [816]
+Editable labels in master SVG: 816
+Independent text elements in master SVG: 1644
+Unique star IDs: 816
+Mapping errors: 0
+All records accounted for: YES
+
+RENDERED FILES
+----------------------------------------------------------------
+constellation.png: 3600 × 4500
+constellation-4x5.png: 1080 × 1350
+constellation-square.png: 1080 × 1080
+constellation-16x9.png: 1920 × 1080
+constellation-9x16.png: 1080 × 1920
+constellation.svg: 6000 × 7500 viewport / fully editable
+
+INTERACTIVE 3D APPLICATION
+----------------------------------------------------------------
+index.html: production full-viewport Three.js entry point
+Stale preview.html / index1.html entries: removed
+assets/app.css and assets/app.js: loaded by index.html
+vendor/three.min.js and assets/constellation-data.js: present
+Supporter stars rendered in 3D: 816
+Depth layers: inner 130 / middle 530 / outer 156
+Searchable supporter records: 816
+Search modes: Backer Number and masked username
+Controls: orbit drag, pan, wheel/pinch zoom, buttons, reset
+Star focus: direct click and search share the same 3D camera-focus path
+Supporter mapping errors: 0
+Legacy aspect-ratio selector: removed
+Permanent supporter list: removed
+
+MOBILE VIEWPORT / SEARCH FLOW
+----------------------------------------------------------------
+Renderer/camera sizing: canvas client width/height
+UI safe area: visualViewport where available
+Search selection order: close results -> blur -> reset gesture state -> settle -> sync viewport -> select -> fly
+Focus target: exact supporter X/Y/Z coordinates; no pan clamp
+Pan clamp: only applies to manual panning
+Selected label: above/below star, safe-area clamped, follows current projection
+Mobile renderer DPR cap: 1.75
+Mobile CSS grain: disabled (coarse pointer)
+Desktop rendering/UI: unchanged
+Mobile search test: 390x500 keyboard-like viewport restored to 390x844
+Selected star after search: 195x422 in mobile canvas
+FIT after search: returns to 31.57 radius and center mark
+Search -> zoom: 7.2 -> 17.58, no stuck radius
+Search -> orbit: theta -0.29 -> -0.60
+Search -> pinch: 17.58 -> 10.18
+Orientation: 844x390, selected star centered and label attached
+
+VISUAL IDENTITY PASS
+----------------------------------------------------------------
+Official logo dark-background colorway: orange mark / white wordmark
+Official logo aspect ratio: 284:32 (preserved)
+Official palette: #FF7C44 / #FFFFFF / #DEDEDE / #1F1F1F
+Primary typeface: Outfit only
+Default ring fit: 15.735 world units (18.8% closer than prior 18.69)
+Main headline: YOU WERE THE FIRST. (Pure White, Outfit Medium)
+Supporting subtitle: You made this possible. (Silver Mist, Outfit Light)
+Footer status: 816 SUPPORTERS MAPPED / ONE RING
+Star rendering: per-star core / halo / glow / color temperature / cross / twinkle attributes
+Brightness hierarchy: deterministic dim / regular / prominent / exceptional distribution
+Size hierarchy: 48% small / 45% medium / 6% prominent / <1% exceptional
+Cross highlights: only prominent candidates; maximum 10 shared flare sprites
+Twinkle: ~12% of data stars, slow and independently phased
+Selected focus: Spark Orange accent, brighter core, dimmed surrounding stars
+Selected nearby labels: 5 maximum
+3D coordinates SHA-256: 58A44EEE7BF0F92FC4C9CAFE48BFFB3CC169BBAE94EDB3264F5158F2F68B0D54
+3D coordinates unchanged from pre-refinement backup: YES
+
+CAMPAIGN COUNT DISCREPANCY
+----------------------------------------------------------------
+Campaign title count: 853
+Authorized records in source: 816
+Difference: -37
+The artwork retains the supplied campaign lockup and states the verified
+record count. No supporter, username, or number was fabricated to close the gap.
+
+VERDICT
+----------------------------------------------------------------
+PASS — all valid source records are represented exactly once.
+PASS — no numbering gaps were filled or treated as missing records.
+PASS — master labels are independent editable text elements.
+PASS — original source files were not modified.
+
+Prepared automatically by scripts/build_validation_report.py
