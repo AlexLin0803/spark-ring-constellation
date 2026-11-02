@@ -80,6 +80,7 @@
   }
 
   const diagMode = new URLSearchParams(window.location.search).get("diag") || "";
+  const diagBg = new URLSearchParams(window.location.search).get("bg") || "";
 
   const initialCanvas = getCanvasMetrics();
   const mobileRendering = isMobileViewport();
@@ -683,6 +684,7 @@
     cloud.position.set(0, 0, -1.6);
     cloud.scale.set(28, 28, 1);
     cloud.renderOrder = -5;
+    cloud.userData.atmosphere = true;
     scene.add(cloud);
 
     const ringHaze = new THREE.Sprite(new THREE.SpriteMaterial({
@@ -698,6 +700,7 @@
     ringHaze.position.set(0, 0, -2.2);
     ringHaze.scale.set(18.4, 18.4, 1);
     ringHaze.renderOrder = -3;
+    ringHaze.userData.atmosphere = true;
     scene.add(ringHaze);
 
     const core = new THREE.Sprite(new THREE.SpriteMaterial({
@@ -713,6 +716,7 @@
     core.position.set(0.6, -0.4, -5.2);
     core.scale.set(17, 17, 1);
     core.renderOrder = -4;
+    core.userData.atmosphere = true;
     scene.add(core);
 
     const second = new THREE.Sprite(new THREE.SpriteMaterial({
@@ -728,6 +732,7 @@
     second.position.set(-3.2, 2.4, -7.5);
     second.scale.set(15, 15, 1);
     second.renderOrder = -6;
+    second.userData.atmosphere = true;
     scene.add(second);
   }
 
@@ -920,7 +925,7 @@
       if (vignette) vignette.style.display = "none";
     } else if (diagMode === "none") {
       scene.visible = false;
-    } else {
+    } else if (diagMode !== "full") {
       scene.traverse(object => {
         if (diagMode === "points") {
           if (object.isSprite || object.isLine || object.isLineSegments) object.visible = false;
@@ -934,14 +939,18 @@
           if (object.isSprite) object.visible = false;
         } else if (diagMode === "no-lines") {
           if (object.isLine || object.isLineSegments) object.visible = false;
+        } else if (diagMode === "no-atmosphere") {
+          if (object.userData.atmosphere) object.visible = false;
         }
       });
     }
-    if (diagMode !== "webgl1" && diagMode !== "dpr1") {
+    if (diagBg === "black") {
+      renderer.setClearColor(0x080808, 1);
+    } else if (diagMode !== "webgl1" && diagMode !== "dpr1") {
       renderer.setClearColor(0x3a3a3a, 1);
     }
     const badge = document.createElement("div");
-    badge.textContent = `DIAG ${diagMode}`;
+    badge.textContent = `DIAG ${diagMode}${diagBg ? " " + diagBg : ""}`;
     badge.style.cssText = "position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:99999;padding:4px 8px;border:1px solid #FF7C44;background:rgba(8,8,8,.9);color:#FF7C44;font:10px monospace;letter-spacing:.08em;pointer-events:none;";
     document.body.appendChild(badge);
   }
