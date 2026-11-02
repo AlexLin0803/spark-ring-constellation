@@ -87,7 +87,7 @@
   const rendererOptions = {
     canvas,
     antialias: !mobileRendering,
-    alpha: false,
+    alpha: mobileRendering,
     powerPreference: mobileRendering ? "default" : "high-performance",
     stencil: false
   };
@@ -98,7 +98,7 @@
     if (gl) rendererOptions.context = gl;
   }
   const renderer = new THREE.WebGLRenderer(rendererOptions);
-  renderer.setClearColor(mobileRendering ? 0x140b07 : 0x080808, 1);
+  renderer.setClearColor(mobileRendering ? 0x000000 : 0x080808, mobileRendering ? 0 : 1);
   renderer.setPixelRatio(getRenderPixelRatio());
   renderer.setSize(initialCanvas.width, initialCanvas.height, false);
   if ("outputColorSpace" in renderer) renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -907,6 +907,11 @@
   }
 
   addAtmosphere();
+  if (mobileRendering) {
+    scene.traverse(object => {
+      if (object.userData.atmosphere) object.visible = false;
+    });
+  }
   addCenterMark();
   addFlares();
   addConstellationLines();

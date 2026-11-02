@@ -271,7 +271,13 @@ button { color: inherit; }
 }
 
 @media (max-width: 760px) {
-  html, body, #app { background: #140b07; }
+  html, body {
+    background:
+      radial-gradient(ellipse at 50% 47%, rgba(118, 48, 20, .30) 0%, rgba(58, 25, 12, .16) 38%, rgba(20, 11, 7, 0) 72%),
+      radial-gradient(ellipse at 38% 64%, rgba(92, 36, 14, .16), rgba(20, 11, 7, 0) 62%),
+      #140b07;
+  }
+  #app { background: transparent; }
   .topbar { padding: max(16px, env(safe-area-inset-top)) 16px 12px; gap: 10px; }
   .brand-logo { height: 17px; }
   .brand-sub { display: none; }

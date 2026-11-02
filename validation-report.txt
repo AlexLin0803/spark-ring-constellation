@@ -87,8 +87,8 @@ Entry cache busting: app.css/app.js version query
 Search selection: resets page scroll and re-syncs 420ms after keyboard close
 Point shader: defined 1.0 - smoothstep(0.0, edge, d); reversed GLSL edges removed
 Point shader: non-finite alpha discarded before blending
-Mobile atmosphere sprites: depth-test independent
-Mobile canvas/CSS base: warm near-black instead of pure black
+Mobile atmosphere sprites: disabled; CSS radial-gradient base used
+Mobile canvas: transparent over CSS warm base
 Desktop rendering/UI: unchanged
 Mobile search test: 390x500 keyboard-like viewport restored to 390x844
 Selected star after search: 195x422 in mobile canvas
