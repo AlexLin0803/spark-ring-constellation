@@ -56,7 +56,7 @@
   }
 
   function getRenderPixelRatio() {
-    const cap = isMobileViewport() ? 1.75 : 2;
+    const cap = isMobileViewport() ? 1.5 : 2;
     return Math.min(window.devicePixelRatio || 1, cap);
   }
 
@@ -79,11 +79,13 @@
   }
 
   const initialCanvas = getCanvasMetrics();
+  const mobileRendering = isMobileViewport();
   const renderer = new THREE.WebGLRenderer({
     canvas,
-    antialias: true,
+    antialias: !mobileRendering,
     alpha: false,
-    powerPreference: "high-performance"
+    powerPreference: mobileRendering ? "default" : "high-performance",
+    stencil: false
   });
   renderer.setClearColor(0x080808, 1);
   renderer.setPixelRatio(getRenderPixelRatio());

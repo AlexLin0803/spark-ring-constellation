@@ -78,7 +78,8 @@ Search selection order: close results -> blur -> reset gesture state -> settle -
 Focus target: exact supporter X/Y/Z coordinates; no pan clamp
 Pan clamp: only applies to manual panning
 Selected label: above/below star, safe-area clamped, follows current projection
-Mobile renderer DPR cap: 1.75
+Mobile renderer DPR cap: 1.5
+Mobile MSAA/antialias: disabled for tile-GPU compatibility
 Mobile search font: 16px computed (prevents iOS focus auto-zoom)
 Mobile viewport: maximum-scale=1, user-scalable=no, viewport-fit=cover
 CSS grain: globally disabled (was the scene-wide mobile compositing suspect)
