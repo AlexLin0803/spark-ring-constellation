@@ -180,6 +180,11 @@ button { color: inherit; }
   margin: 6px auto -17px; background: linear-gradient(var(--orange), transparent);
   opacity: .7;
 }
+.selected-label.below::after {
+  position: absolute; top: -12px; left: 50%;
+  width: 1px; height: 12px; margin: 0;
+  background: linear-gradient(transparent, var(--orange));
+}
 .selected-kicker {
   display: block; font-size: 6.5px; font-weight: 500; letter-spacing: .24em;
   color: var(--orange); margin-bottom: 4px;
@@ -273,6 +278,7 @@ button { color: inherit; }
   .result-number { font-size: 12px; }
   .result-name { font-size: 10px; }
   .hero { top: 92px; left: 18px; max-width: 94vw; }
+  .grain { display: none; }
   #headline { font-size: clamp(29px, 7.4vw, 34px); line-height: 1.02; }
   .headline-sub { margin-top: 11px; font-size: 17px; }
   .hint { display: none; }
@@ -300,4 +306,9 @@ button { color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* The full-screen noise blend is a known weak spot on mobile GPU compositors. */
+@media (pointer: coarse) {
+  .grain { display: none; }
 }

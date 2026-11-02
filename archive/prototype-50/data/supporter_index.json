@@ -1,0 +1,509 @@
+{
+  "campaign": "THE FIRST 853",
+  "mode": "prototype",
+  "prototype_count": 50,
+  "authorized_record_count": 816,
+  "privacy": "Only masked or approved display labels; no original usernames.",
+  "supporters": [
+    {
+      "backer_number": "2",
+      "approved_display_name": "Amir***",
+      "star_id": "SR-2",
+      "sector": "12H",
+      "orbit_track": 1,
+      "angle_deg": -89.97,
+      "star_x": 540.133,
+      "star_y": 552.181
+    },
+    {
+      "backer_number": "5",
+      "approved_display_name": "Dawn***",
+      "star_id": "SR-5",
+      "sector": "12H",
+      "orbit_track": 2,
+      "angle_deg": -81.761,
+      "star_x": 574.879,
+      "star_y": 567.123
+    },
+    {
+      "backer_number": "6",
+      "approved_display_name": "Andre***",
+      "star_id": "SR-6",
+      "sector": "12H",
+      "orbit_track": 3,
+      "angle_deg": -74.434,
+      "star_x": 605.975,
+      "star_y": 571.154
+    },
+    {
+      "backer_number": "7",
+      "approved_display_name": "Evolv***",
+      "star_id": "SR-7",
+      "sector": "12H",
+      "orbit_track": 4,
+      "angle_deg": -69.036,
+      "star_x": 627.404,
+      "star_y": 579.871
+    },
+    {
+      "backer_number": "8",
+      "approved_display_name": "Eric***",
+      "star_id": "SR-8",
+      "sector": "12H",
+      "orbit_track": 1,
+      "angle_deg": -61.532,
+      "star_x": 658.363,
+      "star_y": 589.709
+    },
+    {
+      "backer_number": "9",
+      "approved_display_name": "Harry***",
+      "star_id": "SR-9",
+      "sector": "01H",
+      "orbit_track": 2,
+      "angle_deg": -55.085,
+      "star_x": 685.246,
+      "star_y": 599.911
+    },
+    {
+      "backer_number": "13",
+      "approved_display_name": "Natha***",
+      "star_id": "SR-13",
+      "sector": "01H",
+      "orbit_track": 3,
+      "angle_deg": -46.18,
+      "star_x": 712.55,
+      "star_y": 628.193
+    },
+    {
+      "backer_number": "15",
+      "approved_display_name": "Mahmo***",
+      "star_id": "SR-15",
+      "sector": "01H",
+      "orbit_track": 4,
+      "angle_deg": -39.32,
+      "star_x": 730.337,
+      "star_y": 652.098
+    },
+    {
+      "backer_number": "17",
+      "approved_display_name": "slipb***",
+      "star_id": "SR-17",
+      "sector": "01H",
+      "orbit_track": 1,
+      "angle_deg": -31.941,
+      "star_x": 746.564,
+      "star_y": 679.221
+    },
+    {
+      "backer_number": "18",
+      "approved_display_name": "PPL***",
+      "star_id": "SR-18",
+      "sector": "02H",
+      "orbit_track": 2,
+      "angle_deg": -25.413,
+      "star_x": 770.312,
+      "star_y": 698.576
+    },
+    {
+      "backer_number": "19",
+      "approved_display_name": "Stewa***",
+      "star_id": "SR-19",
+      "sector": "02H",
+      "orbit_track": 3,
+      "angle_deg": -19.21,
+      "star_x": 770.775,
+      "star_y": 727.592
+    },
+    {
+      "backer_number": "20",
+      "approved_display_name": "Grazi***",
+      "star_id": "SR-20",
+      "sector": "02H",
+      "orbit_track": 4,
+      "angle_deg": -10.292,
+      "star_x": 783.181,
+      "star_y": 763.84
+    },
+    {
+      "backer_number": "21",
+      "approved_display_name": "Micha***",
+      "star_id": "SR-21",
+      "sector": "02H",
+      "orbit_track": 1,
+      "angle_deg": -4.011,
+      "star_x": 801.079,
+      "star_y": 789.695
+    },
+    {
+      "backer_number": "22",
+      "approved_display_name": "Nelso***",
+      "star_id": "SR-22",
+      "sector": "03H",
+      "orbit_track": 2,
+      "angle_deg": 3.246,
+      "star_x": 793.372,
+      "star_y": 822.37
+    },
+    {
+      "backer_number": "23",
+      "approved_display_name": "Heath***",
+      "star_id": "SR-23",
+      "sector": "03H",
+      "orbit_track": 3,
+      "angle_deg": 11.541,
+      "star_x": 791.11,
+      "star_y": 859.274
+    },
+    {
+      "backer_number": "24",
+      "approved_display_name": "Jack***",
+      "star_id": "SR-24",
+      "sector": "03H",
+      "orbit_track": 4,
+      "angle_deg": 17.25,
+      "star_x": 783.331,
+      "star_y": 883.558
+    },
+    {
+      "backer_number": "25",
+      "approved_display_name": "Arno***",
+      "star_id": "SR-25",
+      "sector": "03H",
+      "orbit_track": 1,
+      "angle_deg": 24.216,
+      "star_x": 772.025,
+      "star_y": 912.355
+    },
+    {
+      "backer_number": "26",
+      "approved_display_name": "Louis***",
+      "star_id": "SR-26",
+      "sector": "04H",
+      "orbit_track": 2,
+      "angle_deg": 33.321,
+      "star_x": 753.369,
+      "star_y": 948.268
+    },
+    {
+      "backer_number": "27",
+      "approved_display_name": "Bryan***",
+      "star_id": "SR-27",
+      "sector": "04H",
+      "orbit_track": 3,
+      "angle_deg": 40.184,
+      "star_x": 726.34,
+      "star_y": 965.38
+    },
+    {
+      "backer_number": "28",
+      "approved_display_name": "Silvi***",
+      "star_id": "SR-28",
+      "sector": "04H",
+      "orbit_track": 4,
+      "angle_deg": 46.988,
+      "star_x": 716.91,
+      "star_y": 997.636
+    },
+    {
+      "backer_number": "29",
+      "approved_display_name": "Brian***",
+      "star_id": "SR-29",
+      "sector": "04H",
+      "orbit_track": 1,
+      "angle_deg": 54.133,
+      "star_x": 692.174,
+      "star_y": 1018.479
+    },
+    {
+      "backer_number": "30",
+      "approved_display_name": "Linda***",
+      "star_id": "SR-30",
+      "sector": "05H",
+      "orbit_track": 2,
+      "angle_deg": 62.176,
+      "star_x": 658.543,
+      "star_y": 1032.611
+    },
+    {
+      "backer_number": "32",
+      "approved_display_name": "David***",
+      "star_id": "SR-32",
+      "sector": "05H",
+      "orbit_track": 3,
+      "angle_deg": 67.866,
+      "star_x": 631.869,
+      "star_y": 1033.86
+    },
+    {
+      "backer_number": "33",
+      "approved_display_name": "Olive***",
+      "star_id": "SR-33",
+      "sector": "05H",
+      "orbit_track": 4,
+      "angle_deg": 76.313,
+      "star_x": 597.813,
+      "star_y": 1045.384
+    },
+    {
+      "backer_number": "34",
+      "approved_display_name": "ors***",
+      "star_id": "SR-34",
+      "sector": "05H",
+      "orbit_track": 1,
+      "angle_deg": 83.822,
+      "star_x": 566.587,
+      "star_y": 1053.636
+    },
+    {
+      "backer_number": "35",
+      "approved_display_name": "Dale***",
+      "star_id": "SR-35",
+      "sector": "05H",
+      "orbit_track": 2,
+      "angle_deg": 88.801,
+      "star_x": 545.174,
+      "star_y": 1055.246
+    },
+    {
+      "backer_number": "36",
+      "approved_display_name": "artur***",
+      "star_id": "SR-36",
+      "sector": "06H",
+      "orbit_track": 3,
+      "angle_deg": 96.926,
+      "star_x": 510.089,
+      "star_y": 1054.221
+    },
+    {
+      "backer_number": "37",
+      "approved_display_name": "Troy***",
+      "star_id": "SR-37",
+      "sector": "06H",
+      "orbit_track": 4,
+      "angle_deg": 104.783,
+      "star_x": 477.02,
+      "star_y": 1046.66
+    },
+    {
+      "backer_number": "38",
+      "approved_display_name": "Tony***",
+      "star_id": "SR-38",
+      "sector": "06H",
+      "orbit_track": 1,
+      "angle_deg": 112.115,
+      "star_x": 447.923,
+      "star_y": 1034.584
+    },
+    {
+      "backer_number": "39",
+      "approved_display_name": "Circu***",
+      "star_id": "SR-39",
+      "sector": "06H",
+      "orbit_track": 2,
+      "angle_deg": 119.285,
+      "star_x": 419.734,
+      "star_y": 1022.444
+    },
+    {
+      "backer_number": "41",
+      "approved_display_name": "Jil***",
+      "star_id": "SR-41",
+      "sector": "07H",
+      "orbit_track": 4,
+      "angle_deg": 126.22,
+      "star_x": 392.321,
+      "star_y": 1009.633
+    },
+    {
+      "backer_number": "42",
+      "approved_display_name": "Aadev***",
+      "star_id": "SR-42",
+      "sector": "07H",
+      "orbit_track": 4,
+      "angle_deg": 134.412,
+      "star_x": 364.448,
+      "star_y": 987.193
+    },
+    {
+      "backer_number": "44",
+      "approved_display_name": "Colli***",
+      "star_id": "SR-44",
+      "sector": "07H",
+      "orbit_track": 1,
+      "angle_deg": 139.615,
+      "star_x": 352.073,
+      "star_y": 967.852
+    },
+    {
+      "backer_number": "45",
+      "approved_display_name": "Georg***",
+      "star_id": "SR-45",
+      "sector": "07H",
+      "orbit_track": 2,
+      "angle_deg": 146.379,
+      "star_x": 328.428,
+      "star_y": 948.68
+    },
+    {
+      "backer_number": "47",
+      "approved_display_name": "VRG***",
+      "star_id": "SR-47",
+      "sector": "08H",
+      "orbit_track": 3,
+      "angle_deg": 154.299,
+      "star_x": 309.595,
+      "star_y": 918.889
+    },
+    {
+      "backer_number": "49",
+      "approved_display_name": "Gorda***",
+      "star_id": "SR-49",
+      "sector": "08H",
+      "orbit_track": 4,
+      "angle_deg": 161.345,
+      "star_x": 308.211,
+      "star_y": 886.253
+    },
+    {
+      "backer_number": "50",
+      "approved_display_name": "Jess***",
+      "star_id": "SR-50",
+      "sector": "08H",
+      "orbit_track": 1,
+      "angle_deg": 169.229,
+      "star_x": 289.664,
+      "star_y": 855.624
+    },
+    {
+      "backer_number": "51",
+      "approved_display_name": "Carin***",
+      "star_id": "SR-51",
+      "sector": "08H",
+      "orbit_track": 2,
+      "angle_deg": 177.163,
+      "star_x": 293.754,
+      "star_y": 820.204
+    },
+    {
+      "backer_number": "52",
+      "approved_display_name": "Crist***",
+      "star_id": "SR-52",
+      "sector": "09H",
+      "orbit_track": 3,
+      "angle_deg": 183.857,
+      "star_x": 290.965,
+      "star_y": 791.21
+    },
+    {
+      "backer_number": "53",
+      "approved_display_name": "Adam***",
+      "star_id": "SR-53",
+      "sector": "09H",
+      "orbit_track": 4,
+      "angle_deg": 191.304,
+      "star_x": 293.105,
+      "star_y": 758.648
+    },
+    {
+      "backer_number": "54",
+      "approved_display_name": "Don***",
+      "star_id": "SR-54",
+      "sector": "09H",
+      "orbit_track": 1,
+      "angle_deg": 199.17,
+      "star_x": 307.222,
+      "star_y": 727.077
+    },
+    {
+      "backer_number": "55",
+      "approved_display_name": "Paolo***",
+      "star_id": "SR-55",
+      "sector": "09H",
+      "orbit_track": 2,
+      "angle_deg": 205.979,
+      "star_x": 310.522,
+      "star_y": 696.182
+    },
+    {
+      "backer_number": "56",
+      "approved_display_name": "Andre***",
+      "star_id": "SR-56",
+      "sector": "10H",
+      "orbit_track": 3,
+      "angle_deg": 211.178,
+      "star_x": 322.556,
+      "star_y": 676.423
+    },
+    {
+      "backer_number": "57",
+      "approved_display_name": "Mina***",
+      "star_id": "SR-57",
+      "sector": "10H",
+      "orbit_track": 4,
+      "angle_deg": 220.499,
+      "star_x": 349.033,
+      "star_y": 644.903
+    },
+    {
+      "backer_number": "58",
+      "approved_display_name": "Progr***",
+      "star_id": "SR-58",
+      "sector": "10H",
+      "orbit_track": 1,
+      "angle_deg": 227.494,
+      "star_x": 372.819,
+      "star_y": 625.595
+    },
+    {
+      "backer_number": "59",
+      "approved_display_name": "Toby***",
+      "star_id": "SR-59",
+      "sector": "10H",
+      "orbit_track": 2,
+      "angle_deg": 233.244,
+      "star_x": 387.34,
+      "star_y": 603.605
+    },
+    {
+      "backer_number": "60",
+      "approved_display_name": "ALO***",
+      "star_id": "SR-60",
+      "sector": "11H",
+      "orbit_track": 3,
+      "angle_deg": 242.385,
+      "star_x": 421.183,
+      "star_y": 580.866
+    },
+    {
+      "backer_number": "61",
+      "approved_display_name": "Gunth***",
+      "star_id": "SR-61",
+      "sector": "11H",
+      "orbit_track": 4,
+      "angle_deg": 249.236,
+      "star_x": 451.34,
+      "star_y": 574.161
+    },
+    {
+      "backer_number": "62",
+      "approved_display_name": "clair***",
+      "star_id": "SR-62",
+      "sector": "11H",
+      "orbit_track": 1,
+      "angle_deg": 255.97,
+      "star_x": 479.679,
+      "star_y": 566.607
+    },
+    {
+      "backer_number": "63",
+      "approved_display_name": "Peter***",
+      "star_id": "SR-63",
+      "sector": "11H",
+      "orbit_track": 2,
+      "angle_deg": 263.828,
+      "star_x": 512.504,
+      "star_y": 553.716
+    }
+  ]
+}

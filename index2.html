@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#040404">
+<title>Spark Ring — The First 853</title>
+<link rel="stylesheet" href="assets/outfit.css">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="universe" aria-label="Interactive three-dimensional constellation of 816 Kickstarter supporters"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand" aria-label="Spark Ring">
+      <div class="brand-copy">
+        <img class="brand-logo" src="assets/spark-ring-logo-dark.svg" alt="Spark Ring">
+        <span class="brand-sub">COMMUNITY CONSTELLATION / 01</span>
+      </div>
+    </div>
+
+    <div class="search-shell" id="search-shell">
+      <div class="search-box">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="search-input" type="search" autocomplete="off" spellcheck="false" aria-label="Search by Backer Number or username" placeholder="Backer # or name">
+        <button id="search-clear" class="search-clear" type="button" aria-label="Clear search">ESC</button>
+      </div>
+      <div id="search-results" class="search-results" role="listbox" aria-label="Search results" hidden></div>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="Campaign title">
+    <h1 id="headline">YOU WERE THE FIRST.</h1>
+    <p class="headline-sub">You made this possible.</p>
+  </section>
+
+  <div id="label-layer" class="label-layer" aria-hidden="true"></div>
+
+  <div id="center-brand" class="center-brand" aria-hidden="true">
+    <img class="center-mark" src="assets/spark-ring-mark.svg" alt="">
+    <span class="center-name">SPARK RING</span>
+    <span class="center-sub">FOUNDING CONSTELLATION</span>
+  </div>
+
+  <div id="selected-label" class="selected-label" hidden aria-live="polite">
+    <span class="selected-kicker">BACKER</span>
+    <span class="selected-number" id="selected-number">#—</span>
+    <span class="selected-name" id="selected-name">—</span>
+    <span class="selected-meta" id="selected-meta">—</span>
+  </div>
+
+  <div class="hint" aria-hidden="true">DRAG TO ORBIT · SCROLL / PINCH TO ZOOM · SHIFT-DRAG TO PAN</div>
+  <div class="status" aria-hidden="true"><span id="status-count">816</span> SUPPORTERS MAPPED / ONE RING</div>
+
+  <div class="controls" aria-label="Camera controls">
+    <button id="zoom-out" class="control" type="button" aria-label="Zoom out">−</button>
+    <button id="reset-view" class="control reset" type="button" aria-label="Reset view">FIT</button>
+    <button id="zoom-in" class="control" type="button" aria-label="Zoom in">+</button>
+  </div>
+
+  <div id="loading" class="loading">
+    <img class="loading-mark" src="assets/spark-ring-mark.svg" alt="">
+    <span>ASSEMBLING THE CONSTELLATION</span>
+  </div>
+  <div id="error" class="error" hidden></div>
+</div>
+
+<script src="vendor/three.min.js"></script>
+<script src="assets/constellation-data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

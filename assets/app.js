@@ -50,6 +50,35 @@
   const statusCount = document.getElementById("status-count");
   if (statusCount) statusCount.textContent = String(count);
 
+  function isMobileViewport() {
+    const coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+    return Boolean(coarse || Math.min(window.innerWidth, window.innerHeight) <= 760);
+  }
+
+  function getRenderPixelRatio() {
+    const cap = isMobileViewport() ? 1.75 : 2;
+    return Math.min(window.devicePixelRatio || 1, cap);
+  }
+
+  function getCanvasMetrics() {
+    const rect = canvas.getBoundingClientRect();
+    const width = Math.max(1, Math.round(rect.width || window.innerWidth || 1));
+    const height = Math.max(1, Math.round(rect.height || window.innerHeight || 1));
+    return { left: rect.left || 0, top: rect.top || 0, width, height };
+  }
+
+  function getUiViewport() {
+    const vv = window.visualViewport;
+    return {
+      left: vv ? vv.offsetLeft : 0,
+      top: vv ? vv.offsetTop : 0,
+      width: Math.max(1, vv ? vv.width : window.innerWidth),
+      height: Math.max(1, vv ? vv.height : window.innerHeight),
+      scale: vv ? vv.scale : 1
+    };
+  }
+
+  const initialCanvas = getCanvasMetrics();
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
@@ -57,14 +86,14 @@
     powerPreference: "high-performance"
   });
   renderer.setClearColor(0x080808, 1);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.setSize(window.innerWidth, window.innerHeight, false);
+  renderer.setPixelRatio(getRenderPixelRatio());
+  renderer.setSize(initialCanvas.width, initialCanvas.height, false);
   if ("outputColorSpace" in renderer) renderer.outputColorSpace = THREE.SRGBColorSpace;
   if ("toneMapping" in renderer) renderer.toneMapping = THREE.NoToneMapping;
 
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x080706, 0.012);
-  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 160);
+  const camera = new THREE.PerspectiveCamera(50, initialCanvas.width / initialCanvas.height, 0.1, 160);
   camera.position.set(0, 7, 20);
 
   const raycaster = new THREE.Raycaster();
@@ -94,6 +123,8 @@
   const centerMarkObjects = [];
   const heroFlares = [];
   const tempVector = new THREE.Vector3();
+  let lastViewport = { left: 0, top: 0, width: 0, height: 0, dpr: 0 };
+  let viewportSyncQueued = false;
 
   const controls = {
     current: {
@@ -110,22 +141,22 @@
     }
   };
 
-  function fitDistanceForViewport() {
-    const aspect = Math.max(0.2, window.innerWidth / window.innerHeight);
+  function fitDistanceForViewport(width, height) {
+    const aspect = Math.max(0.2, width / Math.max(1, height));
     const vFov = THREE.MathUtils.degToRad(camera.fov);
     const hFov = 2 * Math.atan(Math.tan(vFov / 2) * aspect);
     const limitingFov = Math.min(vFov, hFov);
     return (FIT_RADIUS / Math.sin(limitingFov / 2)) * 1.0;
   }
 
-  function clampTarget(target) {
+  function clampPanTarget(target) {
     const length = target.length();
     if (length > 8.4) target.multiplyScalar(8.4 / length);
     return target;
   }
 
-  function updateViewAfterResize(oldFit) {
-    const nextFit = fitDistanceForViewport();
+  function updateViewAfterResize(oldFit, metrics) {
+    const nextFit = fitDistanceForViewport(metrics.width, metrics.height);
     fitDistance = nextFit;
     maxZoomRadius = fitDistance * 2.7;
     if (selectedIndex < 0 && Math.abs(controls.wanted.radius - oldFit) < oldFit * 0.12) {
@@ -135,7 +166,7 @@
     controls.current.radius = THREE.MathUtils.clamp(controls.current.radius, MIN_ZOOM_RADIUS, maxZoomRadius);
   }
 
-  fitDistance = fitDistanceForViewport();
+  fitDistance = fitDistanceForViewport(initialCanvas.width, initialCanvas.height);
   maxZoomRadius = fitDistance * 2.7;
   controls.current.radius = fitDistance;
   controls.wanted.radius = fitDistance;
@@ -249,7 +280,7 @@
   function createStarUniforms(options = {}) {
     return {
       uTime: { value: 0 },
-      uPointScale: { value: window.innerHeight * 1.08 },
+      uPointScale: { value: initialCanvas.height * 1.08 },
       uDpr: { value: renderer.getPixelRatio() },
       uHasSelection: { value: 0 },
       uSelectedIndex: { value: -1 },
@@ -878,27 +909,50 @@
     }
   }
 
-  function resize() {
+  function syncViewport(force = false) {
+    const metrics = getCanvasMetrics();
+    const dpr = getRenderPixelRatio();
+    const changed = force
+      || metrics.width !== lastViewport.width
+      || metrics.height !== lastViewport.height
+      || dpr !== lastViewport.dpr
+      || metrics.left !== lastViewport.left
+      || metrics.top !== lastViewport.top;
+    if (!changed) {
+      updateSelectedLabel();
+      return false;
+    }
+
     const oldFit = fitDistance;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setSize(width, height, false);
-    camera.aspect = width / height;
+    lastViewport = { ...metrics, dpr };
+    renderer.setPixelRatio(dpr);
+    renderer.setSize(metrics.width, metrics.height, false);
+    camera.aspect = metrics.width / metrics.height;
     camera.updateProjectionMatrix();
-    updateViewAfterResize(oldFit);
+    updateViewAfterResize(oldFit, metrics);
     starMaterial.uniforms.uDpr.value = renderer.getPixelRatio();
-    starMaterial.uniforms.uPointScale.value = height * 1.08;
+    starMaterial.uniforms.uPointScale.value = metrics.height * 1.08;
     dataHalos.material.uniforms.uDpr.value = renderer.getPixelRatio();
-    dataHalos.material.uniforms.uPointScale.value = height * 1.08;
+    dataHalos.material.uniforms.uPointScale.value = metrics.height * 1.08;
     backgroundStars.material.uniforms.uDpr.value = renderer.getPixelRatio();
-    backgroundStars.material.uniforms.uPointScale.value = height * 1.08;
+    backgroundStars.material.uniforms.uPointScale.value = metrics.height * 1.08;
     dust.material.uniforms.uDpr.value = renderer.getPixelRatio();
-    dust.material.uniforms.uPointScale.value = height * 1.08;
+    dust.material.uniforms.uPointScale.value = metrics.height * 1.08;
     ringDust.material.uniforms.uDpr.value = renderer.getPixelRatio();
-    ringDust.material.uniforms.uPointScale.value = height * 1.08;
+    ringDust.material.uniforms.uPointScale.value = metrics.height * 1.08;
     updateSelectedLabel();
+    updateCenterBrand();
     updateLabels(true);
+    return true;
+  }
+
+  function queueViewportSync() {
+    if (viewportSyncQueued) return;
+    viewportSyncQueued = true;
+    requestAnimationFrame(() => {
+      viewportSyncQueued = false;
+      syncViewport(true);
+    });
   }
 
   function applyCamera(dt) {
@@ -949,8 +1003,9 @@
   function projectPoint(x, y, z) {
     tempVector.set(x, y, z).project(camera);
     if (tempVector.z < -1 || tempVector.z > 1) return null;
-    const sx = (tempVector.x * 0.5 + 0.5) * window.innerWidth;
-    const sy = (-tempVector.y * 0.5 + 0.5) * window.innerHeight;
+    const metrics = getCanvasMetrics();
+    const sx = metrics.left + (tempVector.x * 0.5 + 0.5) * metrics.width;
+    const sy = metrics.top + (-tempVector.y * 0.5 + 0.5) * metrics.height;
     return { x: sx, y: sy, z: tempVector.z };
   }
 
@@ -990,11 +1045,26 @@
     selectedNumber.textContent = `#${star.number}`;
     selectedName.textContent = star.name;
     selectedMeta.textContent = `${star.id}  / ${star.layer.toUpperCase()}  / ${star.sector}`;
+
+    const ui = getUiViewport();
+    const margin = 14;
     const halfWidth = selectedLabel.offsetWidth ? selectedLabel.offsetWidth / 2 : 90;
-    const left = THREE.MathUtils.clamp(p.x, halfWidth + 14, window.innerWidth - halfWidth - 14);
-    const top = Math.max(90, p.y - 18);
+    const labelHeight = selectedLabel.offsetHeight || 78;
+    const minLeft = ui.left + halfWidth + margin;
+    const maxLeft = ui.left + ui.width - halfWidth - margin;
+    const left = maxLeft >= minLeft
+      ? THREE.MathUtils.clamp(p.x, minLeft, maxLeft)
+      : ui.left + ui.width / 2;
+
+    const safeTop = ui.top + (isMobileViewport() ? 92 : 76);
+    const safeBottom = ui.top + ui.height - 14;
+    const aboveSpace = p.y - 18 - labelHeight >= safeTop;
+    let top = aboveSpace ? p.y - 18 : p.y + 26 + labelHeight;
+    top = THREE.MathUtils.clamp(top, safeTop + labelHeight, safeBottom);
+
     selectedLabel.style.left = `${left}px`;
     selectedLabel.style.top = `${top}px`;
+    selectedLabel.classList.toggle("below", !aboveSpace);
   }
 
   function labelPoolElement(index) {
@@ -1019,10 +1089,16 @@
       for (const el of labelPool) el.classList.remove("visible");
       return;
     }
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const centerX = width / 2;
-    const centerY = height / 2;
+    const metrics = getCanvasMetrics();
+    const ui = getUiViewport();
+    const width = metrics.width;
+    const height = metrics.height;
+    const leftBound = metrics.left;
+    const topBound = metrics.top;
+    const rightBound = metrics.left + metrics.width;
+    const bottomBound = metrics.top + metrics.height;
+    const centerX = leftBound + width / 2;
+    const centerY = topBound + height / 2;
     const candidates = [];
     const selected = selectedIndex >= 0 ? stars[selectedIndex] : null;
     for (let i = 0; i < stars.length; i++) {
@@ -1030,7 +1106,7 @@
       const star = stars[i];
       const p = projectPoint(star.x, star.y, star.z);
       if (!p) continue;
-      if (p.x < -20 || p.x > width + 20 || p.y < -20 || p.y > height + 20) continue;
+      if (p.x < leftBound - 20 || p.x > rightBound + 20 || p.y < topBound - 20 || p.y > bottomBound + 20) continue;
       const dx = p.x - centerX;
       const dy = p.y - centerY;
       const score = dx * dx + dy * dy;
@@ -1061,7 +1137,7 @@
       for (const [ox, oy] of offsets) {
         const x = candidate.p.x + ox;
         const y = candidate.p.y + oy;
-        if (x < 4 || y < 4 || x + w > width - 4 || y + h > height - 4) continue;
+        if (x < leftBound + 4 || y < topBound + 4 || x + w > rightBound - 4 || y + h > bottomBound - 4) continue;
         let hit = false;
         for (const box of placed) {
           if (!(x + w + 5 <= box.x || x >= box.x + box.w + 5 || y + h + 4 <= box.y || y >= box.y + box.h + 4)) {
@@ -1085,54 +1161,140 @@
     for (let i = used; i < labelPool.length; i++) labelPool[i].classList.remove("visible");
   }
 
+  function resetGestureState() {
+    activePointers.clear();
+    pinch = null;
+    pointerDown = null;
+    movedDistance = 0;
+    gestureHadMultiplePointers = false;
+    gestureWasPan = false;
+    canvas.classList.remove("dragging");
+  }
+
+  function closeSearchUI() {
+    searchResults.hidden = true;
+    activeSearchIndex = -1;
+    currentResults = [];
+    searchInput.blur();
+    if (document.activeElement && typeof document.activeElement.blur === "function") {
+      document.activeElement.blur();
+    }
+  }
+
+  function waitForViewportSettle(maxWait = 320) {
+    return new Promise(resolve => {
+      let done = false;
+      const vv = window.visualViewport;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        if (vv) vv.removeEventListener("resize", onViewportResize);
+        clearTimeout(timeout);
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      };
+      const onViewportResize = () => setTimeout(finish, 60);
+      if (vv) vv.addEventListener("resize", onViewportResize, { once: true });
+      const timeout = setTimeout(finish, maxWait);
+      requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(finish, 80)));
+    });
+  }
+
+  function applySelection(index) {
+    const star = stars[index];
+    selectedIndex = index;
+    searchInput.value = `#${star.number}`;
+    searchResults.hidden = true;
+    searchClear.style.visibility = "visible";
+    updateSelectedLabel();
+    updateLabels(true);
+    updateSelectionFocus();
+  }
+
+  function focusSelectedStar(options = {}) {
+    if (selectedIndex < 0) return;
+    const star = stars[selectedIndex];
+    const focusRadius = THREE.MathUtils.clamp(
+      fitDistance * 0.25,
+      4.0,
+      isMobileViewport() ? 7.2 : 6.4
+    );
+    const focusTarget = new THREE.Vector3(star.x, star.y, star.z);
+    const alreadyFramed = options.force !== true
+      && controls.wanted.target.distanceToSquared(focusTarget) < 0.0025
+      && Math.abs(controls.wanted.radius - focusRadius) < 0.08;
+    if (alreadyFramed && !options.preserveRadius) return;
+
+    controls.wanted.target.copy(focusTarget);
+    if (!options.preserveRadius) {
+      controls.wanted.radius = focusRadius;
+    }
+    controls.wanted.radius = THREE.MathUtils.clamp(controls.wanted.radius, MIN_ZOOM_RADIUS, maxZoomRadius);
+    controls.wanted.theta = controls.current.theta;
+    controls.wanted.phi = THREE.MathUtils.clamp(controls.current.phi, 0.18, 0.78);
+    lastInteraction = performance.now();
+    updateSelectedLabel();
+    updateLabels(true);
+  }
+
   function clearSelection() {
     selectedIndex = -1;
     selectedLabel.hidden = true;
+    selectedLabel.classList.remove("below");
     if (selectedMarker) selectedMarker.visible = false;
     if (selectedGlow) selectedGlow.visible = false;
     if (selectedCore) selectedCore.visible = false;
     for (const el of labelPool) el.classList.remove("visible");
     searchInput.value = "";
+    searchInput.blur();
     searchResults.hidden = true;
     searchClear.style.visibility = "hidden";
+    activeSearchIndex = -1;
     updateSelectionFocus();
   }
 
   function selectStar(index, fly = true) {
     if (index < 0 || index >= stars.length) return;
     const wasSelected = index === selectedIndex;
-    selectedIndex = index;
-    const star = stars[index];
-    searchInput.value = `#${star.number}`;
-    searchResults.hidden = true;
-    searchClear.style.visibility = "visible";
+    applySelection(index);
     if (fly) {
-      const focusRadius = THREE.MathUtils.clamp(fitDistance * 0.25, 4.0, 6.4);
-      const focusTarget = new THREE.Vector3(star.x, star.y, star.z);
-      const alreadyFramed = wasSelected
-        && controls.wanted.target.distanceToSquared(focusTarget) < 0.0025
-        && Math.abs(controls.wanted.radius - focusRadius) < 0.08;
-      if (!alreadyFramed) {
-        controls.wanted.target.copy(focusTarget);
-        controls.wanted.radius = focusRadius;
-        controls.wanted.theta = controls.current.theta;
-        controls.wanted.phi = THREE.MathUtils.clamp(controls.current.phi, 0.08, 0.92);
-        clampTarget(controls.wanted.target);
-        lastInteraction = performance.now();
-      }
+      focusSelectedStar({ force: !wasSelected });
     }
     updateSelectedLabel();
     updateLabels(true);
     updateSelectionFocus();
   }
 
+  let searchSelectionPending = false;
+
+  async function selectFromSearch(index) {
+    if (searchSelectionPending) return;
+    searchSelectionPending = true;
+    try {
+      closeSearchUI();
+      resetGestureState();
+      await waitForViewportSettle();
+      syncViewport(true);
+      applySelection(index);
+      focusSelectedStar({ force: true });
+      resetGestureState();
+    } finally {
+      searchSelectionPending = false;
+    }
+  }
+
   function resetView() {
+    closeSearchUI();
+    resetGestureState();
     clearSelection();
+    syncViewport(true);
     controls.wanted.target.set(0, 0, 0);
     controls.wanted.radius = fitDistance;
     controls.wanted.theta = DEFAULT_THETA;
     controls.wanted.phi = DEFAULT_PHI;
     lastInteraction = performance.now();
+    updateSelectedLabel();
+    updateCenterBrand();
+    updateLabels(true);
   }
 
   function zoomBy(factor) {
@@ -1149,7 +1311,7 @@
     const up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
     controls.wanted.target.addScaledVector(right, -dx * scale);
     controls.wanted.target.addScaledVector(up, dy * scale);
-    clampTarget(controls.wanted.target);
+    clampPanTarget(controls.wanted.target);
   }
 
   function setPointer(event) {
@@ -1169,7 +1331,11 @@
 
   function onPointerDown(event) {
     if (event.target !== canvas) return;
-    canvas.setPointerCapture?.(event.pointerId);
+    try {
+      canvas.setPointerCapture?.(event.pointerId);
+    } catch {
+      // Synthetic or already-released pointers do not need capture.
+    }
     activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     if (activePointers.size === 1) {
       movedDistance = 0;
@@ -1367,7 +1533,7 @@
       body.append(name, meta);
       button.append(number, body);
       button.addEventListener("mousedown", event => event.preventDefault());
-      button.addEventListener("click", () => selectStar(item.index, true));
+      button.addEventListener("click", () => { void selectFromSearch(item.index); });
       searchResults.appendChild(button);
     });
     searchResults.hidden = false;
@@ -1402,7 +1568,7 @@
     } else if (event.key === "Enter") {
       event.preventDefault();
       if (activeSearchIndex >= 0 && currentResults[activeSearchIndex]) {
-        selectStar(currentResults[activeSearchIndex].index, true);
+        void selectFromSearch(currentResults[activeSearchIndex].index);
       }
     } else if (event.key === "Escape") {
       hideResults();
@@ -1427,8 +1593,24 @@
   canvas.addEventListener("wheel", onWheel, { passive: false });
   canvas.addEventListener("contextmenu", onContextMenu);
   window.addEventListener("keydown", onKeyDown);
-  window.addEventListener("resize", resize);
-  window.addEventListener("orientationchange", () => window.setTimeout(resize, 120));
+  window.addEventListener("resize", queueViewportSync);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", queueViewportSync);
+    window.visualViewport.addEventListener("scroll", queueViewportSync);
+  }
+
+  let orientationTimer = null;
+  function handleOrientationChange() {
+    clearTimeout(orientationTimer);
+    orientationTimer = window.setTimeout(() => {
+      resetGestureState();
+      syncViewport(true);
+      if (selectedIndex >= 0) {
+        focusSelectedStar({ preserveRadius: true, force: true });
+      }
+    }, 180);
+  }
+  window.addEventListener("orientationchange", handleOrientationChange);
 
   zoomIn.addEventListener("click", () => zoomBy(0.80));
   zoomOut.addEventListener("click", () => zoomBy(1.25));
@@ -1487,6 +1669,49 @@
       core: selectedCore ? selectedCore.visible : false,
       centerMark: centerMarkObjects[0] ? centerMarkObjects[0].visible : false
     }),
+    getViewportDiagnostics: () => {
+      const metrics = getCanvasMetrics();
+      const ui = getUiViewport();
+      const star = selectedIndex >= 0 ? stars[selectedIndex] : null;
+      const projected = star ? projectPoint(star.x, star.y, star.z) : null;
+      const labelRect = selectedLabel && !selectedLabel.hidden
+        ? selectedLabel.getBoundingClientRect()
+        : null;
+      return {
+        window: { width: window.innerWidth, height: window.innerHeight },
+        visualViewport: window.visualViewport ? {
+          width: window.visualViewport.width,
+          height: window.visualViewport.height,
+          offsetLeft: window.visualViewport.offsetLeft,
+          offsetTop: window.visualViewport.offsetTop,
+          scale: window.visualViewport.scale
+        } : null,
+        canvas: metrics,
+        renderer: {
+          cssWidth: renderer.domElement.clientWidth,
+          cssHeight: renderer.domElement.clientHeight,
+          pixelWidth: renderer.domElement.width,
+          pixelHeight: renderer.domElement.height,
+          pixelRatio: renderer.getPixelRatio()
+        },
+        cameraAspect: camera.aspect,
+        fitDistance,
+        maxZoomRadius,
+        selected: star ? star.number : null,
+        starWorld: star ? [star.x, star.y, star.z] : null,
+        projected,
+        label: labelRect ? {
+          left: labelRect.left,
+          top: labelRect.top,
+          right: labelRect.right,
+          bottom: labelRect.bottom,
+          hidden: selectedLabel.hidden,
+          below: selectedLabel.classList.contains("below")
+        } : null,
+        ui
+      };
+    },
+    forceViewportSync: () => syncViewport(true),
     selectByNumber: number => {
       const index = byNumber.get(String(number));
       if (index !== undefined) selectStar(index, true);
@@ -1497,9 +1722,10 @@
       if (!star) return null;
       tempVector.set(star.x, star.y, star.z).project(camera);
       if (tempVector.z < -1 || tempVector.z > 1) return null;
+      const metrics = getCanvasMetrics();
       return {
-        x: (tempVector.x * 0.5 + 0.5) * window.innerWidth,
-        y: (-tempVector.y * 0.5 + 0.5) * window.innerHeight,
+        x: metrics.left + (tempVector.x * 0.5 + 0.5) * metrics.width,
+        y: metrics.top + (-tempVector.y * 0.5 + 0.5) * metrics.height,
         z: tempVector.z
       };
     },
@@ -1513,7 +1739,7 @@
     fitDistance: () => fitDistance
   };
 
-  resize();
+  syncViewport(true);
   updateSelectedLabel();
   updateSelectionFocus();
   updateLabels(true);
