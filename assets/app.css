@@ -271,6 +271,7 @@ button { color: inherit; }
 }
 
 @media (max-width: 760px) {
+  html, body, #app { background: #140b07; }
   .topbar { padding: max(16px, env(safe-area-inset-top)) 16px 12px; gap: 10px; }
   .brand-logo { height: 17px; }
   .brand-sub { display: none; }

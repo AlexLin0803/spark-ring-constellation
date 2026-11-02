@@ -97,7 +97,7 @@
     if (gl) rendererOptions.context = gl;
   }
   const renderer = new THREE.WebGLRenderer(rendererOptions);
-  renderer.setClearColor(0x080808, 1);
+  renderer.setClearColor(mobileRendering ? 0x140b07 : 0x080808, 1);
   renderer.setPixelRatio(getRenderPixelRatio());
   renderer.setSize(initialCanvas.width, initialCanvas.height, false);
   if ("outputColorSpace" in renderer) renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -677,7 +677,7 @@
       opacity: 0.15,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      depthTest: true,
+      depthTest: false,
       fog: false
     }));
     cloud.position.set(0, 0, -1.6);
@@ -692,7 +692,7 @@
       opacity: 0.24,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      depthTest: true,
+      depthTest: false,
       fog: false
     }));
     ringHaze.position.set(0, 0, -2.2);
@@ -707,7 +707,7 @@
       opacity: 0.07,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      depthTest: true,
+      depthTest: false,
       fog: false
     }));
     core.position.set(0.6, -0.4, -5.2);
@@ -722,7 +722,7 @@
       opacity: 0.065,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      depthTest: true,
+      depthTest: false,
       fog: false
     }));
     second.position.set(-3.2, 2.4, -7.5);
