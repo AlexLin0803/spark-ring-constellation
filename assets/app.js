@@ -913,6 +913,11 @@
     if (!diagMode) return;
     if (diagMode === "canvas-hidden") {
       canvas.style.visibility = "hidden";
+      document.body.style.background = "#3a3a3a";
+      const app = document.getElementById("app");
+      if (app) app.style.background = "#3a3a3a";
+      const vignette = document.querySelector(".vignette");
+      if (vignette) vignette.style.display = "none";
     } else if (diagMode === "none") {
       scene.visible = false;
     } else {
@@ -931,6 +936,9 @@
           if (object.isLine || object.isLineSegments) object.visible = false;
         }
       });
+    }
+    if (diagMode !== "webgl1" && diagMode !== "dpr1") {
+      renderer.setClearColor(0x3a3a3a, 1);
     }
     const badge = document.createElement("div");
     badge.textContent = `DIAG ${diagMode}`;
