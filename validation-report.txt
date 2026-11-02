@@ -84,6 +84,8 @@ Mobile viewport: maximum-scale=1, user-scalable=no, viewport-fit=cover
 CSS grain: globally disabled (was the scene-wide mobile compositing suspect)
 Entry cache busting: app.css/app.js version query
 Search selection: resets page scroll and re-syncs 420ms after keyboard close
+Point shader: defined 1.0 - smoothstep(0.0, edge, d); reversed GLSL edges removed
+Point shader: non-finite alpha discarded before blending
 Desktop rendering/UI: unchanged
 Mobile search test: 390x500 keyboard-like viewport restored to 390x844
 Selected star after search: 195x422 in mobile canvas

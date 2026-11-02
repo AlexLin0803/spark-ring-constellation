@@ -358,10 +358,10 @@
         vec2 p = gl_PointCoord - 0.5;
         float d = length(p) * 2.0;
         float coreR = mix(0.16, 0.32, clamp(vCore, 0.0, 1.3));
-        float core = smoothstep(coreR, 0.0, d);
-        float inner = smoothstep(0.48, 0.0, d);
+        float core = 1.0 - smoothstep(0.0, coreR, d);
+        float inner = 1.0 - smoothstep(0.0, 0.48, d);
         float haloR = mix(0.58, 1.0, clamp(vHalo, 0.0, 1.5));
-        float halo = smoothstep(haloR, 0.0, d);
+        float halo = 1.0 - smoothstep(0.0, haloR, d);
         float glow = pow(max(0.0, 1.0 - d), 2.4) * vGlow;
         float cross = 0.0;
         if (uHaloOnly < 0.5 && vCross > 0.001) {
@@ -382,7 +382,7 @@
         float twinkle = 1.0 + vTwinkle * sin(uTime * 0.55 + vPhase * 1.7);
         float alpha = (core * coreWeight + inner * innerWeight + halo * haloWeight + glow * glowWeight + cross * 0.55) * vAlpha * twinkle;
         alpha *= 1.0 + vSelected * 0.18;
-        if (alpha < 0.012) discard;
+        if (!(alpha >= 0.012)) discard;
         float coreWhite = mix(0.24, 0.65, clamp(vCore, 0.0, 1.2));
         vec3 coreColor = mix(vColor, vec3(1.0), coreWhite);
         vec3 crossColor = mix(vColor, vec3(1.0, 0.78, 0.55), 0.45);
