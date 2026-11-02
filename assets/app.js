@@ -1179,6 +1179,9 @@
     if (document.activeElement && typeof document.activeElement.blur === "function") {
       document.activeElement.blur();
     }
+    if (window.scrollX !== 0 || window.scrollY !== 0) {
+      window.scrollTo(0, 0);
+    }
   }
 
   function waitForViewportSettle(maxWait = 320) {
@@ -1273,10 +1276,18 @@
       closeSearchUI();
       resetGestureState();
       await waitForViewportSettle();
+      if (window.scrollX !== 0 || window.scrollY !== 0) window.scrollTo(0, 0);
       syncViewport(true);
       applySelection(index);
       focusSelectedStar({ force: true });
       resetGestureState();
+      window.setTimeout(() => {
+        if (selectedIndex !== index) return;
+        if (window.scrollX !== 0 || window.scrollY !== 0) window.scrollTo(0, 0);
+        syncViewport(true);
+        focusSelectedStar({ force: true });
+        updateSelectedLabel();
+      }, 420);
     } finally {
       searchSelectionPending = false;
     }
